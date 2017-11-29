@@ -1,8 +1,8 @@
 const mockProduct = {
-  "id": 12345,
-  "price": 10.22,
-  "description": "Awesome product that does awesome things and will make your life better",
-  "name": "Awesome Product"
+  'id': 12345,
+  'price': 10.22,
+  'description': 'Awesome product that does awesome things and will make your life better',
+  'name': 'Awesome Product'
 }
 
 module.exports = {

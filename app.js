@@ -1,21 +1,22 @@
-'use strict';
+'use strict'
+
+/* global util */
 
 const SwaggerExpress = require('swagger-express-mw')
 const app = require('express')()
 const validator = require('swagger-express-validator')
 const yaml = require('js-yaml')
-const fs   = require('fs')
+const fs = require('fs')
 
-const schema = yaml.safeLoad(fs.readFileSync('./api/swagger/swagger.yaml', 'utf8'));
+const schema = yaml.safeLoad(fs.readFileSync('./api/swagger/swagger.yaml', 'utf8'))
 
-
-module.exports = app; // for testing
+module.exports = app // for testing
 
 const config = {
   appRoot: __dirname // required config
 }
 
-SwaggerExpress.create(config, function(err, swaggerExpress) {
+SwaggerExpress.create(config, function (err, swaggerExpress) {
   if (err) { throw err }
 
   // install middleware
@@ -33,9 +34,9 @@ SwaggerExpress.create(config, function(err, swaggerExpress) {
     },
     responseValidationFn: (req, data, errors) => {
       console.log(`failed response validation: ${req.method} ${req.originalUrl}\n ${util.inspect(errors)}`)
-    },
+    }
   }
-  app.use(validator(opts));
+  app.use(validator(opts))
 
   if (swaggerExpress.runner.swagger.paths['/hello']) {
     console.log('try this:\ncurl http://127.0.0.1:' + port + '/hello?name=Scott')

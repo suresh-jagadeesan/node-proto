@@ -1,28 +1,15 @@
-const mockProduct = {
-  'id': 12345,
-  'price': 10.22,
-  'description': 'Awesome product that does awesome things and will make your life better',
-  'name': 'Awesome Product'
-}
+const Product = require('../models/product')
 
 module.exports = {
-  getById (req, res, next) {
-    return Promise.resolve(mockProduct)
-    .then(data => res.json(data))
-    .catch((error) => {
-      console.error(error)
-      res.status(500)
-      return res.json(error.message)
-    })
+  getById (id) {
+    return Product.getById(id)
   },
 
-  create (req, res, next) {
-    return Promise.resolve(mockProduct)
-    .then(data => res.json(data))
-    .catch((error) => {
-      console.error(error)
-      res.status(500)
-      return res.json(error.message)
-    })
+  getAll () {
+    return Product.getAll()
+  },
+
+  create (product) {
+    return Product.create(product)
   }
 }

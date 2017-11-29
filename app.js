@@ -2,11 +2,11 @@
 
 /* global util */
 
-const SwaggerExpress = require('swagger-express-mw')
 const app = require('express')()
-const validator = require('swagger-express-validator')
 const yaml = require('js-yaml')
 const fs = require('fs')
+const bodyParser = require('body-parser')
+const Product = require('./api/controllers/product')
 
 const schema = yaml.safeLoad(fs.readFileSync('./api/swagger/swagger.yaml', 'utf8'))
 
@@ -16,29 +16,26 @@ const config = {
   appRoot: __dirname // required config
 }
 
-SwaggerExpress.create(config, function (err, swaggerExpress) {
-  if (err) { throw err }
+// parse application/json
+app.use(bodyParser.json())
 
-  // install middleware
-  swaggerExpress.register(app)
+app.get('/product/:id', (req, res, next) => {
+  res.json({ test: 'file stuff' })
+})
 
-  var port = process.env.PORT || 10010
-  app.listen(port)
+app.get('/products', (req, res, next) => {
+  return Product.getAll()
+    .then(data => res.json(data))
+    .catch(next)
+})
 
-  const opts = {
-    schema,
-    validateRequest: true,
-    validateResponse: true,
-    requestValidationFn: (req, data, errors) => {
-      console.log(`failed request validation: ${req.method} ${req.originalUrl}\n ${util.inspect(errors)}`)
-    },
-    responseValidationFn: (req, data, errors) => {
-      console.log(`failed response validation: ${req.method} ${req.originalUrl}\n ${util.inspect(errors)}`)
-    }
-  }
-  app.use(validator(opts))
+app.post('/product', (req, res, next) => {
+  return Product.create(req.body)
+    .then(data => res.json(data))
+    .catch(next)
+})
 
-  if (swaggerExpress.runner.swagger.paths['/hello']) {
-    console.log('try this:\ncurl http://127.0.0.1:' + port + '/hello?name=Scott')
-  }
+var port = process.env.PORT || 10010
+app.listen(port, () => {
+  console.log('Try accessing /products')
 })

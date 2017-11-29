@@ -18,7 +18,7 @@ produces:
   - application/json
 paths:
   /product/{productId}:
-    x-swagger-router-controller: product
+    # x-swagger-router-controller: product
     get:
       tags:
       - "product"
@@ -46,7 +46,7 @@ paths:
       # security:
       # - api_key: []
   /product:
-    x-swagger-router-controller: product
+    # x-swagger-router-controller: product
     post:
       tags:
       - "product"

@@ -38,7 +38,7 @@ ajv@^4.10.3, ajv@^4.7.0, ajv@^4.9.1:
     co "^4.6.0"
     json-stable-stringify "^1.0.1"
 
-ajv@^5.1.0:
+ajv@^5.1.0, ajv@^5.5.0:
   version "5.5.0"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-5.5.0.tgz#eb2840746e9dc48bd5e063a36e3fd400c5eab5a9"
   dependencies:
@@ -960,6 +960,12 @@ expand-range@^1.8.1:
   resolved "https://registry.yarnpkg.com/expand-range/-/expand-range-1.8.2.tgz#a299effd335fe2721ebae8e257ec79644fc85337"
   dependencies:
     fill-range "^2.1.0"
+
+express-ajv@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/express-ajv/-/express-ajv-1.0.3.tgz#bb240f1476229fdd8d73879184894519997373ff"
+  dependencies:
+    ajv "^4.10.3"
 
 express@^4.12.3:
   version "4.16.2"

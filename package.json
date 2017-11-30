@@ -8,8 +8,10 @@
   "license": "",
   "main": "app.js",
   "dependencies": {
+    "ajv": "^5.5.0",
     "body-parser": "^1.18.2",
     "express": "^4.12.3",
+    "express-ajv": "^1.0.3",
     "js-yaml": "^3.10.0",
     "standard": "^10.0.3",
     "swagger-express-mw": "^0.1.0",
